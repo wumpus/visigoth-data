@@ -1,0 +1,121 @@
+pull out just this author
+
+cat ol_dump_OL35839A | ./jq ' { key } '  | grep auth
+
+cat ol_dump_OL35839A | ./jq ' { key } '  | grep OL35839A
+cat ol_dump_OL35839A | ./jq '.key'  | grep OL35839A
+
+cat ol_dump_OL35839A | ./jq '. | select(contains({key: "/authors/OL35839A"}))'
+
+{
+  "name": "Charles Darwin",
+  "links": [
+    {
+      "url": "http://darwin-online.org.uk/",
+      "type": {
+        "key": "/type/link"
+      },
+      "title": "The Complete Work of Charles Darwin Online"
+    }
+  ],
+  "personal_name": "Charles Darwin",
+  "alternate_names": [
+    "Charles Robert Darwin",
+    "Charles R. Darwin",
+    "Charles Darwin, M.A ., F.R.S., F.G.S.",
+    "Charles Darwin (1809-1882)"
+  ],
+  "death_date": "19 April 1882",
+  "wikipedia": "http://en.wikipedia.org/wiki/Charles_Darwin",
+  "created": {
+    "type": "/type/datetime",
+    "value": "2008-04-01T03:28:50.625462"
+  },
+  "photos": [
+    6289108,
+    6289106
+  ],
+  "last_modified": {
+    "type": "/type/datetime",
+    "value": "2012-06-26T22:41:30.933918"
+  },
+  "latest_revision": 10,
+  "key": "/authors/OL35839A",
+  "birth_date": "12 February 1809",
+  "type": {
+    "key": "/type/author"
+  },
+  "revision": 10
+}
+
+cat ol_dump_OL35839A | ./jq '.key | startswith("/authors/")'
+ returns true/false, but I want the key
+
+cat ol_dump_OL35839A | ./jq '.key | select(startswith("/authors/"))'
+ returns actual key values
+
+# just lists the author ids
+zcat ol_dump_latest.txt.json.gz | ./jq '.key | select(startswith("/authors/"))' | gzip > ol_dump_latest_keys_authors.gz
+7,125,427 authors
+
+# this dumps what I really want for authors
+zcat ol_dump_latest.txt.json.gz | ./jq 'select(.type.key == "/type/author" ) | { key, name, personal_name, alternate_names, birth_date, death_date  } ' | gzip > ol_dump_latest_author_info.json.gz
+
+# but I really want all of the people. ok, what are the types:
+zcat ol_dump_latest.txt.json.gz | ./jq '.type.key' | sort | uniq -c | sort -nr
+25123350 "/type/edition"
+15937901 "/type/work"
+6868077 "/type/author"
+ 613834 "/type/delete"
+ 452324 "/type/redirect"
+  91400 "/type/subject"
+    967 "/type/i18n"
+    465 "/type/language"
+    325 "/type/library"
+    300 "/type/template"
+    271 "/type/page"
+    126 "/type/macro"
+    107 "/type/volume"
+     47 "/type/rawtext"
+     46 "/type/type"
+     15 "/type/i18n_page"
+     12 "/type/home"
+     11 "/type/usergroup"
+     10 "/type/doc"
+      9 "/type/permission"
+      7 "/type/backreference"
+      3 "/type/series"
+      3 "/type/collection"
+      2 "/type/user"
+      2 "/type/scan_record"
+      1 "/type/uri"
+      1 "/type/scan_location"
+      1 "/type/place"
+      1 "/type/object"
+      1 "/type/content"
+      1 "/type/about"
+
+# but really, what I want are entities, not authors
+
+# Elizabeth I shows up as "subjects/person:"
+# There are "subjects/place:" and "subjects/time:"
+# Elizabeth I has both a time: and a person:
+# https://openlibrary.org/subjects/time:elizabeth_1558-1603
+# https://openlibrary.org/subjects/person:elizabeth_i_queen_of_england_(1533-1603)
+# but I don't see any evidence of those records in the dump.
+
+# OK, let's try Charles Darwin
+# he doesn't have a subjects/person: link out of a name search
+# https://openlibrary.org/search?q=evolution&person_facet=Charles+Darwin+%281809-1882%29
+
+# OK, joan of arc
+# https://openlibrary.org/search?q=joan+of+arc&person_facet=Joan+of+Arc%2C+Saint+%281412-1431%29
+# https://openlibrary.org/search?q=joan+of+arc&author_key=OL124523A&person_facet=Joan+of+Arc%2C+Saint+%281412-1431%29
+{
+  "key": "/authors/OL124523A",
+  "name": "Joan of Arc, Saint",
+  "personal_name": "Joan",
+  "alternate_names": null,
+  "birth_date": "1412",
+  "death_date": "1431,"
+}

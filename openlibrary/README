@@ -1,0 +1,28 @@
+fetched from:
+
+https://openlibrary.org/developers/dumps
+
+-rw-rw-r--. 1 lindahl lindahl  159278357 Jul 16 14:11 ol_dump_latest_author_info_compact.json.gz
+-rw-rw-r--. 1 lindahl lindahl  161958213 Jul 16 11:39 ol_dump_latest_author_info.json.gz
+-rw-rw-r--. 1 lindahl lindahl   26792701 Jul 16 11:04 ol_dump_latest_keys_authors.gz
+-rw-rw-r--. 1 lindahl lindahl    2915008 Jul 16 12:30 ol_dump_latest_subject.json.gz
+-rw-rw-r--. 1 lindahl lindahl 7403342879 Jun  1 07:41 ol_dump_latest.txt.gz
+-rw-rw-r--. 1 lindahl lindahl 6987247279 Jun 23 11:57 ol_dump_latest.txt.json.gz
+
+http://stedolan.github.io/jq/tutorial/ -- see JQ-EXAMPLES
+
+Question:
+are the priv OCR books labeled in this dataset?
+some of them, maybe all... you can 'borrow' them if priv
+
+Want to extract:
+
+author authority records, hopefully with alternative names
+
+list of all priv books
+list of all non-priv books
+
+sample of books by publication year... 1 per year?
+
+
+

@@ -1,0 +1,108 @@
+http://wiki.dbpedia.org/services-resources/datasets/nlp
+
+2.1 DBpedia Lexicalizations Dataset
+alternate names for entities and concepts
+e.g. all of the ways that Apple, Inc. is referred to in Wikipedia
+
+2.3 DBpedia Thematic Concepts
+gives types for entities and concepts
+e.g. Adolescence is a Concept
+
+http://wiki.dbpedia.org/services-resources/ontology
+
+Class	Instances
+Resource (overall)	4,233,000
+Place 			  735,000
+Person 			1,450,000
+Work 			  411,000
+Species 		  251,000
+Organisation		  241,000
+
+NOTE: All downloaded files are from 2014
+
+*** http://downloads.dbpedia.org/2014/en/instance_types_en.nt.bz2
+
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/OfficeHolder> .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Person> .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikidata.dbpedia.org/resource/Q5> .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Person> .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Thing> .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Person> .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikidata.dbpedia.org/resource/Q215627> .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#NaturalPerson> .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Agent> .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent> .
+<http://dbpedia.org/resource/Abraham_Lincoln__1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/TimePeriod> .
+<http://dbpedia.org/resource/Abraham_Lincoln__1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Thing> .
+<http://dbpedia.org/resource/Abraham_Lincoln__2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/TimePeriod> .
+<http://dbpedia.org/resource/Abraham_Lincoln__2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Thing> .
+<http://dbpedia.org/resource/Abraham_Lincoln__3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/TimePeriod> .
+<http://dbpedia.org/resource/Abraham_Lincoln__3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Thing> .
+
+*** http://data.dws.informatik.uni-mannheim.de/dbpedia/2014/en/persondata_en.nt.bz2
+
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://xmlns.com/foaf/0.1/name> "Abraham Lincoln"@en .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://xmlns.com/foaf/0.1/surname> "Lincoln"@en .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://xmlns.com/foaf/0.1/givenName> "Abraham"@en .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Person> .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://purl.org/dc/elements/1.1/description> "16th President of the United States"@en .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://dbpedia.org/ontology/birthDate> "1809-02-12"^^<http://www.w3.org/2001/XMLSchema#date> .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://dbpedia.org/ontology/birthPlace> <http://dbpedia.org/resource/Hardin_County,_Kentucky> .
+<http://dbpedia.org/resource/Abraham_Lincoln> <http://dbpedia.org/ontology/deathDate> "1865-04-15"^^<http://www.w3.org/2001/XMLSchema#date> .
+
+*** http://data.dws.informatik.uni-mannheim.de/dbpedia/2014/en/redirects_en.nt.bz2
+
+<http://dbpedia.org/resource/AfghanistanPeople> <http://dbpedia.org/ontology/wikiPageRedirects> <http://dbpedia.org/resource/Demography_of_Afghanistan> .
+
+*** http://data.dws.informatik.uni-mannheim.de/dbpedia/2014/en/disambiguations_en.nt.bz2
+
+<http://dbpedia.org/resource/Alien> <http://dbpedia.org/ontology/wikiPageDisambiguates> <http://dbpedia.org/resource/Alien_(law)> .
+<http://dbpedia.org/resource/Alien> <http://dbpedia.org/ontology/wikiPageDisambiguates> <http://dbpedia.org/resource/Alien_(software)> .
+<http://dbpedia.org/resource/Alien> <http://dbpedia.org/ontology/wikiPageDisambiguates> <http://dbpedia.org/resource/AliEn_(ALICE_Environment)> .
+<http://dbpedia.org/resource/Alien> <http://dbpedia.org/ontology/wikiPageDisambiguates> <http://dbpedia.org/resource/Alien_Technology> .
+
+
+bzcat persondata_en.nt.bz2 | grep 'http://xmlns.com/foaf/0.1/name' > persondata_name
+cat persondata_name  | perl -ane 'm/"(.*)"/; print "$1\n";' >persondata_name.name
+then I looked through all the 1-4 letter ones and made the list persondata_name.name.not
+and then used that to construct personname_name.final
+
+That sucked due to entries like Coke_(footballer) having a name of "Coke"@en... many,
+many one-word names.
+
+Drop all entries that have a 1-word name and parens? That got rid of 50% of my bad matches in
+my example martindale00kath
+example: Adrogue
+ok, try paren-or-underscore
+much better - now get rid of 94% of my bad matches in the example
+remaining example: Anemone
+<http://dbpedia.org/resource/An%C3%A9mone> <http://xmlns.com/foaf/0.1/name> "Anemone"@en .
+
+probably also dropped most of the 1-4 letter names, too
+
+bzcat persondata_en.nt.bz2 | ./extract-one-parens.py | sort | uniq > persondata_name.name
+
+That dropped 70,000 names out of 1.1 million
+The only 1-4 letter things in persondata_name.no that are still in there are
+   Deco
+   Jebe
+   Sine
+   Uzo
+
+Well, that's a lot better.
+
+cat persondata_name.name persondata_name.name.no persondata_name.name.no | sort | uniq -u > persondata_name.final 
+
+[lindahl@rd dbpedia]$ wc -l persondata_name.name persondata_name.final persondata_name.name.no
+ 1028890 persondata_name.name
+ 1028885 persondata_name.final
+      92 persondata_name.name.no
+(doesn't quite add up, whatever)
+
+OK, fine, let's get rid of things like:
+
+<http://dbpedia.org/resource/Carilef> <http://xmlns.com/foaf/0.1/name> "Calais"@en .
+
+by comparing the resource/* string with the "*" string
+
+down to 125 singles in my example, 1800 -> 900 -> 190 -> 125

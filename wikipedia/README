@@ -1,0 +1,33 @@
+wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2
+
+(This data is currently from the 20150901 dump)
+
+Wikipedia hourly usage data
+https://dumps.wikimedia.org/other/pagecounts-raw/
+wget https://dumps.wikimedia.org/other/pagecounts-all-sites/2015/2015-10/pagecounts-20151001-000000.gz
+...
+wget https://dumps.wikimedia.org/other/pagecounts-all-sites/2015/2015-10/pagecounts-20151007-230000.gz
+
+Also: edit counts
+
+* using wikipedia_articles.csv
+
+lowercase
+discard line if title eq redirect due to lowercasing
+discard line if title has more than N spaces
+
+* fast matcher
+
+lowercase, go word by word, building unigram, bigram, trigram for
+lookup in an exact-match table
+drop a trailing comma: "ballads," but not "John Doe, Jr."
+maybe drop a trailing period: "John Doe, Jr." vs "ballads."
+what to do about subset matches? choices
+ yes* advance whenever there is a match: Broadside Ballad means go to the word after Ballad
+ no* do nothing special: Broadside Ballad will always also match Ballad {big FAIL for people with Socrates in their names}
+ no* smart drops: Broadside Ballad Monger can match "Broadside Ballad" and "Ballad Monger" but not Ballad
+
+weirdnesses
+"Mary Darwin" is a redirct to "Charles Darwin"
+"List of foo"s have all kinds of things on the lists pointing at them
+

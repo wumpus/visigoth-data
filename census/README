@@ -1,0 +1,9 @@
+Common surnames:
+
+wget http://www2.census.gov/topics/genealogy/2000surnames/names.zip -O surnames.zip
+
+First name popularity by year: 
+
+wget http://www.ssa.gov/oact/babynames/names.zip -O firstnames.zip
+
+
