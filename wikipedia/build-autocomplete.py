@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# zcat sum-pagecounts.out.gz | ./pagecounts-to-autocomplete.py
+# zcat sum-pagecounts.out.gz | ./build-autocomplete.py
 
 import fileinput
 import pickle
@@ -22,16 +22,14 @@ def topn(n, d):
 prefixes = {}
 
 for line in fileinput.input():
-
     line = line.rstrip()
-
     parts = line.rsplit(sep=',', maxsplit=1)
-
     name, count = parts
 
     name = name.replace('_', ' ')
     if name == 'Main Page':
         continue
+
     count = int(count)
 
 # 10,000:   8090295 bytes of output
