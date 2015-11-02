@@ -1,6 +1,6 @@
 wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2
 
-(This data is currently from the 20150901 dump)
+(This data is currently from the 20151002 dump)
 
 Wikipedia hourly usage data
 https://dumps.wikimedia.org/other/pagecounts-raw/
