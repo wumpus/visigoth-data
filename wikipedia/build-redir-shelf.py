@@ -2,7 +2,8 @@
 
 import gzip
 import csv
-import pickle
+import shelve
+import os
 
 forward = {}
 backward = {}
@@ -19,8 +20,6 @@ def load_wikipedia_titles(file):
         for row in reader:
             [ spaces, title, redir ] = row
             if int(spaces) > 4: # keep up to 5-word phrases XXX what if the redir has a lot of words?
-                continue
-            if title.lower() == redir.lower(): # case-changing redir. skip.
                 continue
             if title.startswith('List of '):
                 continue
@@ -47,45 +46,37 @@ def load_wikipedia_titles(file):
 
             if redir == '':
                 continue
-            forward[title.lower()] = redir
-            if backward.get(redir.lower()) is None:
-                backward[redir.lower()] = []
-            backward[redir.lower()].extend([title]) # keep this upper-case
+            forward[title] = redir
+            if backward.get(redir) is None:
+                backward[redir] = []
+            backward[redir].extend([title])
 
-#            if len(backward[redir]) > 1 and 'of' in title:
-#                print("Multiple redirs:", redir, backward[redir])
+load_wikipedia_titles(os.environ.get('VISIGOTH_DATA', '.') +"/wikipedia_articles_all.csv.gz")
 
-load_wikipedia_titles("wikipedia_articles_all.csv.gz")
+# if there is no lowercase forward, let one of the partly-upper versions be lowercase
+# this is needed because humans are going to type all-lower queries into our engine
 
-# do something to get rid of the case-changing redirs ... keep the version with the most upper-case
-for b in backward:
-    uniq = {}
-    for a in backward[b]:
-        if uniq.get(a.lower()) is not None:
-            # this only strips leading/trailing lower-case, really I should use .maketrans / .translate instead XXX
-            old_strip = uniq[a.lower()].strip('abcdefghijklmnopqrstuvwxyz')
-            new_strip = a.strip('abcdefghijklmnopqrstuvwxyz')
-            if len(new_strip) > len(old_strip):
-                uniq[a.lower()] = a
-        else:
-            uniq[a.lower()] = a
+lower_forwards = {}
 
-    backward[b] = list(uniq[k] for k in uniq.keys())
+print("forward[bbs] is", forward[bbs])
 
-# debug
-print("Pope forward", forward.get('pope'), ", Pope backward", backward.get('pope'))
+for t in forward:
+    if t != t.lower():
+        if t.lower() not in forward:
+            lower_forwards[t.lower()] = forward[t]
 
-f = open("redirs_pickle", "wb")
-pickle.dump({'forward': forward, 'backward': backward}, f)
+for t in lower_forwards:
+    # note that we are not setting up a backlink!
+    forward[t] = lower_forwards[t]
 
-#import shelve
-#
-#with shelve.open('redir_forward_shelf', flag='n', writeback=True) as s:
-#    for k in forward:
-#        s[k] = forward[k]
-#
-#with shelve.open('redir_backward_shelf', flag='n', writeback=True) as s:
-#    for k in backward:
-#        s[k] = backward[k]
+print("forward[bbs] is", forward[bbs])
+
+with shelve.open('redir_forward_shelf', flag='n', writeback=True) as s:
+    for k in forward:
+        s[k] = forward[k]
+
+with shelve.open('redir_backward_shelf', flag='n', writeback=True) as s:
+    for k in backward:
+        s[k] = backward[k]
 
 
