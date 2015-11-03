@@ -20,3 +20,6 @@ for a in argv:
             for bb in backward.get(ff.lower(), []):
                 print("BackBackward", bb, backward.get(bb.lower(), []))
 
+    b = backward.get(a.lower())
+    if b is not None:
+        print("Backward", a, ",", b)
