@@ -13,4 +13,10 @@ for a in argv:
         print("Forward", a, ",", f)
         print("Backward", f, backward.get(f.lower(), []))
 
+        ff = forward.get(f.lower())
+        if ff is not None:
+            print("Forward", f, ",", ff)
+            print("Backward", ff, backward.get(ff.lower(), []))
+            for bb in backward.get(ff.lower(), []):
+                print("BackBackward", bb, backward.get(bb.lower(), []))
 
