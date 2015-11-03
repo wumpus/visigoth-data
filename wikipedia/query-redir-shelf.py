@@ -2,9 +2,10 @@
 
 import shelve
 from sys import argv
+import os
 
-backward = shelve.open('redir_backward_shelf', flag='r')
-forward = shelve.open('redir_forward_shelf', flag='r')
+backward = shelve.open(os.environ.get('VISIGOTH_DATA','.')+'/redir_backward_shelf', flag='r')
+forward = shelve.open(os.environ.get('VISIGOTH_DATA','.')+'/redir_forward_shelf', flag='r')
 
 argv = argv[1:]
 for a in argv:
