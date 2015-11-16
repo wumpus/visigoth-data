@@ -44,9 +44,10 @@ def load_wikipedia_titles(file):
 #            if title.startswith('Military of'):
 #                continue
 
+            forward[title] = redir
+
             if redir == '':
                 continue
-            forward[title] = redir
             if backward.get(redir) is None:
                 backward[redir] = []
             backward[redir].extend([title])
@@ -56,20 +57,21 @@ load_wikipedia_titles(os.environ.get('VISIGOTH_DATA', '.') +"/wikipedia_articles
 # if there is no lowercase forward, let one of the partly-upper versions be lowercase
 # this is needed because humans are going to type all-lower queries into our engine
 
-lower_forwards = {}
+print("choosing lower-case forwards...")
 
-print("forward[bbs] is", forward[bbs])
+lower_forwards = {}
 
 for t in forward:
     if t != t.lower():
         if t.lower() not in forward:
+            # last one wins XXX not very smart
             lower_forwards[t.lower()] = forward[t]
 
 for t in lower_forwards:
     # note that we are not setting up a backlink!
     forward[t] = lower_forwards[t]
 
-print("forward[bbs] is", forward[bbs])
+print("writing shelves...")
 
 with shelve.open('redir_forward_shelf', flag='n', writeback=True) as s:
     for k in forward:
