@@ -19,10 +19,10 @@ def load_wikipedia_titles(file):
         reader = csv.reader(f)
         for row in reader:
             [ spaces, title, redir ] = row
-            if int(spaces) > 4: # keep up to 5-word phrases XXX what if the redir has a lot of words?
-                continue
-            if title.startswith('List of '):
-                continue
+#            if int(spaces) > 4: # keep up to 5-word phrases XXX what if the root article has a lot of words? current we are dropping the shorter phrase, too
+#                continue
+#            if title.startswith('List of '):
+#                continue
 
 # I changed my mind about doing this
 #            if title.startswith('Geography of'):
@@ -45,9 +45,9 @@ def load_wikipedia_titles(file):
 #                continue
 
             forward[title] = redir
-
             if redir == '':
                 continue
+
             if backward.get(redir) is None:
                 backward[redir] = []
             backward[redir].extend([title])
@@ -64,7 +64,7 @@ lower_forwards = {}
 for t in forward:
     if t != t.lower():
         if t.lower() not in forward:
-            # last one wins XXX not very smart
+            # last one wins XXX not very smart, how about most popular?
             lower_forwards[t.lower()] = forward[t]
 
 for t in lower_forwards:

@@ -9,19 +9,34 @@ forward = shelve.open(os.environ.get('VISIGOTH_DATA','.')+'/redir_forward_shelf'
 
 argv = argv[1:]
 for a in argv:
-    f = forward.get(a) or forward.get(a.lower())
+    f = forward.get(a)
+    if f == '':
+        f = a
+    if f is None:
+        f = forward.get(a.lower())
+    if f == '':
+        f = a.lower()
     if f is not None:
         print("Forward", a, ",", f)
-        print("Backward", f, backward.get(f, []) or backward.get(f.lower(), []))
+        print("Backward", f, backward.get(f, []))
+        if f == a or f == a.lower():
+            continue
 
-        ff = forward.get(f) or forward.get(f.lower())
+        ff = forward.get(f)
+        if ff == '':
+            continue
+        if ff is None:
+            ff = forward.get(f.lower())
+        if ff == '':
+            continue
         if ff is not None:
-            print("Forward", f, ",", ff)
-            print("Backward", ff, backward.get(ff, []) or backward.get(ff.lower(), []))
-            for bb in backward.get(ff.lower(), []):
-                print("BackBackward", bb, backward.get(bb.lower(), []))
+            print("Second hop:")
+            print(" Forward", f, ",", ff)
+            print(" Backward", ff, backward.get(ff, []))
         continue
 
-    b = backward.get(a) or backward.get(a.lower())
+    b = backward.get(a)
+    if b is None:
+        b = backward.get(a.lower())
     if b is not None:
         print("Backward-only", a, ",", b)
