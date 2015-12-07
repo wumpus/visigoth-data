@@ -9,7 +9,7 @@ import re
 entry = ''
 ia_id = ''
 
-metadata = shelve.open('metadata_shelf', flag='n', writeback=True)
+metadata = shelve.open('book_metadata_shelf', flag='n', writeback=True)
 isbn13_to_ia_id = shelve.open('isbn13_to_ia_id', flag='n', writeback=True)
 
 def process(ia_id, entry):

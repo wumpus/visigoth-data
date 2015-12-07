@@ -3,7 +3,7 @@
 import shelve
 import os
 
-metadata = shelve.open('metadata_shelf', flag='w', writeback=True)
+metadata = shelve.open('book_metadata_shelf', flag='w', writeback=True)
 stats = {}
 stats['rank_zero'] = 0
 stats['rank_nonzero'] = 0
