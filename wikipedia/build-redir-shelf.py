@@ -64,8 +64,11 @@ lower_forwards = {}
 for t in forward:
     if t != t.lower():
         if t.lower() not in forward:
-            # last one wins XXX not very smart, how about most popular?
-            lower_forwards[t.lower()] = forward[t]
+            # last one wins, XXX not very smart, how about most popular?
+            if forward[t] != '':
+                lower_forwards[t.lower()] = forward[t]
+            else:
+                lower_forwards[t.lower()] = t
 
 for t in lower_forwards:
     # note that we are not setting up a backlink!
