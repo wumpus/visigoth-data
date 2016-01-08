@@ -11,11 +11,18 @@ argv = argv[1:]
 for a in argv:
     f = forward.get(a)
     if f == '':
-        f = a
+        if not a.islower():
+            f = a
+        else:
+            # XXX to fix a bug in previous build-redir-shelf version
+            mixed = a[0].upper() + a[1:]
+            f = forward.get(mixed, a)
+            if f == '':
+                f = mixed
     if f is None:
         f = forward.get(a.lower())
-    if f == '':
-        f = a.lower()
+        if f == '':
+            f = a.lower()
     if f is not None:
         print("Forward", a, ",", f)
         print("Backward", f, backward.get(f, []))
