@@ -23,12 +23,14 @@ def process(ia_id, entry):
     matches = re.findall('dc:title\>([^\<]+)\</dc:title', entry)
     if len(matches) > 1:
         print("multiple dc:title seen in", ia_id)
+        return
     elif len(matches) == 1:
         meta['title'] = matches[0].rstrip(',.').strip()
 
     matches = re.findall('dc:publisher\>([^\<]+)\</dc:publisher', entry)
     if len(matches) > 1:
         print("multiple dc:publisher seen in", ia_id)
+        return
     elif len(matches) == 1:
         publisher = matches[0].rstrip(',.').strip().replace('\n', ' ').replace('  ', ' ')
         meta['publisher'] = publisher
@@ -36,6 +38,7 @@ def process(ia_id, entry):
     matches = re.findall('dc:date\>([^\<]+)\</dc:date', entry)
     if len(matches) > 1:
         print("multiple dc:date seen in", ia_id)
+        return
     elif len(matches) == 1:
         meta['date'] = matches[0].rstrip(',.').strip()
 
